@@ -1,0 +1,71 @@
+
+
+describe "Test Minions"{
+
+	var arma1 = new Arma(nombre = "Pistola", poder = 5)
+	var arma2 = new Arma(nombre = "Bazooka", poder = 10)
+	var steve = new Minion(bananas = 0)
+	var jon = new Minion(bananas = 10)
+	
+	method agregarArmas(){
+		5.times({a=> steve.otorgarArma(arma1)})
+
+	}
+	test "steve no tiene armas" {
+		assert.that(steve.armas().isEmpty())
+	}
+	test "steve tiene una bazooka"{
+		steve.otorgarArma(arma2)
+		assert.that(steve.tieneArma("Bazooka"))
+	}
+	test "se le agrega 5 armas a steve, que ya tenia 1 arma"{
+		self.agregarArmas()
+		assert.equals(5, steve.armas().size())
+	}
+	test "se le agrega 15 bananas a steve y come 5 "{
+		steve.alimentar(15)
+		5.times({a=>steve.comerBanana()})
+		assert.equals(10, steve.bananas())
+	}
+	test "se le agregan 5 armas a steve y es peligroso"{
+		self.agregarArmas()	
+		assert.that(steve.esPeligroso())
+	}
+	test "Steve es de color amarillo"{
+		//assert
+	}
+	test "steve toma el suero y cambia su color"{
+		steve.consumirSueroMutante()
+		//assert
+	}
+	test "Steve toma 2 veces el suero y es amarillo"{
+		2.times({a=>steve.consumirSueroMutante()})
+		//assert
+	}
+	test "Jon toma el suero y se queda sin armas"{
+		jon.consumirSueroMutante()
+		assert.that(jon.armas().isEmpty())
+	}
+	test "Jon toma el suero y tiene 9 bananas"{
+		jon.consumirSueroMutante()
+		assert.equals(9,jon.bananas())
+	}
+	test "steve toma el suero y si le damos 5 armas se queda con ellas"{
+		steve.consumirSueroMutante()
+		self.agregarArmas()
+		assert.equals([arma1,arma1,arma1,arma1,arma1], steve.armas())
+	}
+	test "el nivel de concentracion de Jon es 15 "{
+		jon.otorgarArma(arma1)
+		assert.equals(15, jon.nivelConcentracion())
+	}
+	test "jon toma en suero y su nivel de concentracion es 9"{
+		jon.consumirSueroMutante()
+		assert.equals(9,jon.nivelConcentracion())
+	}
+	test "jon tiene una pistola en su armamento"{
+		jon.otorgarArma(arma1)
+		assert.that(jon.tieneArma("Pistola"))
+	}
+}
+

@@ -1,0 +1,12 @@
+
+describe "Test Armas"{
+	const arma1 = new Arma(nombre = "Lanzacohetes", poder = 100)
+
+	test "El arma1 tienen poder 100"{
+		assert.equals(arma1.poder(),100)
+	}
+	test "El arma1 tiene nombre Lanzacohetes"{
+		assert.equals(arma1.nombre(),"Lanzacohetes")
+	}
+
+}

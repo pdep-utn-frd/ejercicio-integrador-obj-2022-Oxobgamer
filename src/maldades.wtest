@@ -1,0 +1,53 @@
+
+describe "Test Villanos"{
+	var rosario  = new Ciudad(temperatura = 30)
+	var gru 	 = new Villano(ciudad = rosario)	
+	var congelar = new Congelar()
+	var steve 	 = new Minion(bananas = 0)
+	var rayoC    = new Arma(nombre = "Rayo Congelante", poder = 10)
+
+	fixture{	
+		gru.agregarMinion(steve)
+		gru.nuevoMinion()
+		steve.otorgarArma(rayoC)
+		
+	}
+	method alimentarMinions(){
+		steve.alimentar(500)
+	}
+	
+	test "Si se alimenta, steve es reclutado" {
+		self.alimentarMinions()
+		gru.planificar(congelar)
+		assert.equals(steve,congelar.minionsAsignados().first())
+	}
+	test "Solo un minion reclutado"{
+		self.alimentarMinions()
+		gru.planificar(congelar)
+		assert.equals(1,congelar.minionsAsignados().size())
+	}
+	
+	test "si se alimenta a los minions y se realiza la maldad, la temperatura de la ciudad es 0 "{
+		self.alimentarMinions()
+		gru.planificar(congelar)
+		gru.realizar(congelar)
+		assert.equals(0,rosario.temperatura())
+	
+	}test "si se alimenta a los minions y se realiza la maldad, steve tiene 10 bananas mas"{
+		self.alimentarMinions()
+		gru.planificar(congelar)
+		gru.realizar(congelar)
+		assert.equals(510,steve.bananas())
+	
+	}
+	test "Si pedimos hacer una maldad sin minions debe salir error"{
+		assert.throwsExceptionWithType(new SinMinionsAsignados(message=""),{gru.realizar(congelar)})
+	}
+
+	test "Si gru hace la maldad, steve tiene una maldad"{
+		self.alimentarMinions()
+		gru.planificar(congelar)
+		gru.realizar(congelar)
+		assert.that(congelar.minionsAsignados().all({x=>x.maldades()==1}))
+	}
+}
