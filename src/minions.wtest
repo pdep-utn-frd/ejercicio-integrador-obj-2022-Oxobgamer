@@ -1,4 +1,4 @@
-
+import objects.*
 
 describe "Test Minions"{
 
@@ -32,15 +32,15 @@ describe "Test Minions"{
 		assert.that(steve.esPeligroso())
 	}
 	test "Steve es de color amarillo"{
-		//assert
+		assert.that(steve.estado()==normal)
 	}
 	test "steve toma el suero y cambia su color"{
 		steve.consumirSueroMutante()
-		//assert
+		assert.that(steve.estado()==mutante)
 	}
 	test "Steve toma 2 veces el suero y es amarillo"{
 		2.times({a=>steve.consumirSueroMutante()})
-		//assert
+		assert.that(steve.estado()==normal)
 	}
 	test "Jon toma el suero y se queda sin armas"{
 		jon.consumirSueroMutante()
@@ -57,11 +57,11 @@ describe "Test Minions"{
 	}
 	test "el nivel de concentracion de Jon es 15 "{
 		jon.otorgarArma(arma1)
-		assert.equals(15, jon.nivelConcentracion())
+		assert.equals(15, jon.nivelDeConcentracion())
 	}
 	test "jon toma en suero y su nivel de concentracion es 9"{
 		jon.consumirSueroMutante()
-		assert.equals(9,jon.nivelConcentracion())
+		assert.equals(9,jon.nivelDeConcentracion())
 	}
 	test "jon tiene una pistola en su armamento"{
 		jon.otorgarArma(arma1)

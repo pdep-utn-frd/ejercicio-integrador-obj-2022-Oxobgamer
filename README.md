@@ -49,4 +49,5 @@ Para un nueva película de la saga se analizan cambios:
 1. ¿Qué pasaría si los minions pudieran ser de otro color, de manera que, por ejemplo, los minions violetas se transforman en verdes al tomar el suero mutante, y éstos en amarillos, y además siendo verdes hacen cosas diferentes? Indicar en el diagrama de clases cómo se modificaría la solución anterior para incorporar esta nueva situación, implementar los métodos necesarios (inventar el nuevo comportamiento) y justificar conceptualmente.
 2. ¿Y si se estableciera que una vez que un minion amarillo pasa a violeta, es irreversible, y ya no puede volver a cambiar, por más suero mutante que tome?
 
-
+Todas estas cosas se harian generando un nuevo objeto polimorfico con los actuales.
+Para que fuera irreversible, se tendria que modificar su respectivo metodo cuando se recibe el suero
